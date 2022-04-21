@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="profile">
+        <img src="/assets/profile.png" alt="default user">
+        <h3>User Info:</h3>
+
+        <ng-container *ngIf="!inUpdateMode">
+            <div class="flex">
+                <p>Username: </p>
+                <p>{{user!.username}}</p>
+            </div>
+            <div class="flex">
+                <p>Email: </p>
+                <p>{{user!.email}}</p>
+            </div>
+            <div class="flex">
+                <p>Phone: </p>
+                <p>{{user!.tel}}</p>
+            </div>
+        </ng-container>
+        <button (click)="inUpdateMode = !inUpdateMode" class="edit-button">{{ inUpdateMode ? 'Cancel' :
+            'Edit'}}</button>
+
+        <ng-container *ngIf="inUpdateMode">
+            <form #form="ngForm" (ngSubmit)="updateProfile(form)">
+                <div class="flex">
+                    <p>Username: </p>
+                    <input type="text" #usernameInput="ngModel" class="input-error" name="username" id="username"
+                        [ngModel]="user!.username" required minlength="5" required>
+                </div>
+                <ng-container *ngIf="usernameInput.touched">
+                    <p *ngIf="usernameInput.errors?.['required']" class="error">
+                        Username is required!
+                    </p>
+                    <p *ngIf="usernameInput.errors?.['minlength']" class="error">
+                        Username must be at least 5 characters long.
+                    </p>
+                </ng-container>
+                <div class="flex">
+                    <p>Email: </p>
+                    <input type="email" [appCustomValidator]="emailValidator" #inputEmail="ngModel" class="input-error"
+                        name="email" id="email" [ngModel]="user!.email" required>
+                </div>
+                <ng-container *ngIf="inputEmail.touched">
+                    <p *ngIf="inputEmail.errors?.['required']" class="error">
+                        Email is required!
+                    </p>
+                    <p *ngIf="inputEmail.errors?.['invalidEmail']" class="error">
+                        Email is not valid!
+                    </p>
+                </ng-container>
+                <div class="flex">
+                    <p>Phone: </p>
+                    <div>
+                        <select name="select-tel" id="select-tel" class="tel">
+                            <option value="00359">+359</option>
+                        </select>
+                        <input type="text" class="input-error" name="tel" id="tel" [ngModel]="user!.tel">
+                    </div>
+                </div>
+                <button class="green-button">Save</button>
+            </form>
+        </ng-container>
+
+    </div>
+</div>

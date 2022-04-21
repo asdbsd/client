@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IPost, ITheme } from 'src/app/shared/interfaces';
+import { Component, Input} from '@angular/core';
+import { IPost} from 'src/app/shared/interfaces';
+
 
 @Component({
   selector: 'app-aside',
@@ -10,5 +11,4 @@ export class AsideComponent {
   @Input() title!: string;
   @Input() items: IPost[] | undefined;
 
-  constructor() { }
 }

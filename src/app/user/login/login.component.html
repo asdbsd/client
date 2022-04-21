@@ -1,0 +1,53 @@
+{{form.value | json}}
+<div class="container">
+    <form #form="ngForm" class="login" action="" method="post" (ngSubmit)="login(form)">
+
+        <fieldset>
+            <h2>Login Form</h2>
+
+            <p class="field field-icon">
+                <label for="email">
+                    <fa-icon [icon]="faEnvelope"></fa-icon>
+                    <input #emailInput="ngModel" [appCustomValidator]="emailValidator" ngModel class="input-error" type="email" name="email" id="email"
+                        placeholder="john.doe@gmail.com" required>
+                </label>
+            </p>
+
+            <ng-container *ngIf="emailInput.touched">
+                <p *ngIf="emailInput.errors?.['required']" class="error">
+                    Email is required!
+                </p>
+                <p *ngIf="emailInput.errors?.['invalidEmail']" class="error">
+                    Email is not valid!
+                </p>
+            </ng-container>
+
+
+            <p class="field field-icon">
+                <label for="password">
+                    <fa-icon [icon]="faLock"></fa-icon>
+                    <input #passwordInput="ngModel" ngModel type="password" name="password" id="password"
+                        placeholder="******" [minlength]="4" required>
+                </label>
+            </p>
+
+            <ng-container *ngIf="passwordInput.touched">
+                <p *ngIf="passwordInput.errors?.['required']" class="error">
+                    Password is required!
+                </p>
+                <p *ngIf="passwordInput.errors?.['minlength']" class="error">
+                    Password must be at least 4 characters!
+                </p>
+            </ng-container>
+
+
+            <button>Login</button>
+
+            <p class="text-center">
+                Have an account?
+                <a routerLink="/register">Register</a>
+            </p>
+
+        </fieldset>
+    </form>
+</div>

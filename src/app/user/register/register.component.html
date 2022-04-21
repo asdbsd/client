@@ -1,0 +1,94 @@
+<div class="container">
+    <form [formGroup]="form" class="register" method="post" (ngSubmit)="register()">
+
+        <fieldset>
+            <h2>Registration Form</h2>
+
+            <!-- username -->
+            <p class="field field-icon">
+                <label for="username">
+                    <fa-icon [icon]="icons.faUser"></fa-icon>
+                    <input class="input-error" type="text" name="username" id="username" placeholder="Johny"
+                        formControlName="username">
+                </label>
+            </p>
+            <ng-container *ngIf="form.controls['username'].touched">
+                <p *ngIf="form.controls['username'].errors?.['required']" class="error">
+                    Username is required!
+                </p>
+                <p *ngIf="form.controls['username'].errors?.['minlength']" class="error">
+                    Username must be at least 5 characters long.
+                </p>
+            </ng-container>
+
+
+            <!-- email -->
+            <p class="field field-icon">
+                <label for="email">
+                    <fa-icon [icon]="icons.faEnvelope"></fa-icon>
+                    <input type="email" name="email" id="email" placeholder="john.doe@gmail.com"
+                        formControlName="email">
+                </label>
+            </p>
+            <ng-container *ngIf="form.controls['email'].touched">
+                <p *ngIf="form.controls['email'].errors?.['required']" class="error">
+                    Email is required!
+                </p>
+                <p *ngIf="form.controls['email'].errors?.['invalidEmail']" class="error">
+                    Email is not valid!
+                </p>
+            </ng-container>
+
+
+            <!-- telephone -->
+            <p class="field field-icon">
+                <label for="tel">
+                    <fa-icon [icon]="icons.faPhone"></fa-icon>
+                    <select name="select-tel" id="select-tel" class="tel">
+                        <option value="00359">+359</option>
+                    </select>
+                    <input type="text" name="tel" id="tel" placeholder="885 888 888" formControlName="tel">
+                </label>
+            </p>
+
+            <!-- password -->
+            <p class="field field-icon">
+                <label for="password">
+                    <fa-icon [icon]="icons.faLock"></fa-icon>
+                    <input type="password" name="password" id="password" placeholder="******"
+                        formControlName="password">
+                </label>
+            </p>
+
+            <ng-container *ngIf="form.controls['password'].touched">
+                <p *ngIf="form.controls['password'].errors?.['required']" class="error">
+                    Password is required!
+                </p>
+                <p  *ngIf="form.controls['password'].errors?.['minlength']" class="error">
+                    Password must be at least 5 characters!
+                </p>
+            </ng-container>
+
+            <!-- rePassword -->
+            <p class="field field-icon">
+                <label for="rePassword">
+                    <fa-icon [icon]="icons.faLock"></fa-icon>
+                    <input type="password" name="rePassword" id="rePassword" placeholder="******"
+                        formControlName="repeatPassword">
+                </label>
+            </p>
+            <ng-container *ngIf="form.controls['repeatPassword'].touched">
+                <p *ngIf="form.controls['repeatPassword'].errors?.['sameValue']" class="error">Repeat Password does not match password!</p>
+            </ng-container>
+
+
+            <button>Create Account</button>
+
+            <p class="text-center">
+                Have an account?
+                <a href="/login">Log In</a>
+            </p>
+
+        </fieldset>
+    </form>
+</div>

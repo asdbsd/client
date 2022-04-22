@@ -6,29 +6,23 @@ import { ThemesComponent } from './themes/themes.component';
 
 const routes: Routes = [
     {
-        path: 'themes',
-        children: [
-            {
-                path: '',
-                pathMatch: 'full',
-                component: ThemesComponent
-            },
-            {
-                path: ':id',
-                component: ThemeComponent
-            }
-        ]
-    },
-    {
-        path: 'new-theme',
+        path: 'add',
         component: NewThemeComponent,
         canActivate: [AuthActivate],
         data: {
             authenticationRequired: true,
-            authenticationFailureRedirectUrl: '/login'
+            authenticationFailureRedirectUrl: '/user/login'
         }
+    },
+    {
+        path: '',
+        pathMatch: 'full',
+        component: ThemesComponent
+    },
+    {
+        path: ':id',
+        component: ThemeComponent
     }
-
 ]
 
 export const ThemeRoutingModule = RouterModule.forChild(routes);

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ContentService } from 'src/app/content.service';
+import { ContentService } from 'src/app/core/content.service';
 
 @Component({
   selector: 'app-new-theme',
@@ -19,7 +19,7 @@ export class NewThemeComponent {
     if( form.invalid ) { return };
     this.contentService.saveTheme(form.value).subscribe({
       next: () => {
-        this.router.navigate(['/themes'])
+        this.router.navigate(['/theme'])
       },
       error: (err) => {
         console.log(err)

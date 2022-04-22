@@ -5,7 +5,7 @@
         <div class="theme-title">
             <div class="theme-name-wrapper">
                 <div class="theme-name">
-                    <h2>{{theme?.themeName}}</h2>
+                    <h2>{{theme!.themeName }}</h2>
                     <p>Date: <time>{{theme?.created_at}}</time></p>
                 </div>
                 <div class="subscribers">
@@ -15,7 +15,7 @@
             </div>
         </div>
         <!-- comment  -->
-        <div *ngFor="let post of theme!.posts" class="comment">
+        <div *ngFor="let post of theme?.posts" class="comment">
             <header class="header">
                 <p><span>{{post.userId.username}}</span> posted on <time>{{post.created_at}}</time></p>
             </header>

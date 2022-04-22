@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ITheme } from '../shared/interfaces';
-import { UserService } from '../user/user.service';
+import { UserService } from '../core/user.service';
 
 @Component({
   selector: 'app-home',

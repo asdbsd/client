@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { emailValidator } from 'src/app/shared/validators';
-import { UserService } from '../user.service';
+import { UserService } from '../../core/user.service';
 
 @Component({
   selector: 'app-login',

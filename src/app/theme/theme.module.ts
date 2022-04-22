@@ -6,8 +6,8 @@ import { ThemeRoutingModule } from './theme-routing.module';
 import { AsideComponent } from './aside/aside.component';
 import { SharedModule } from '../shared/shared.module';
 import { ThemeComponent } from './theme/theme.component';
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from '../home/home.component';
 
 
 @NgModule({
@@ -15,8 +15,8 @@ import { FormsModule } from '@angular/forms';
     NewThemeComponent,
     ThemeComponent,
     ThemesComponent,
-    AsideComponent
-    
+    AsideComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,

@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs';
+
 // import { LocalStorage } from '../core/injection-tokens';
 import { IUser } from '../shared/interfaces';
 
-const API_URL = environment.apiURL
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class UserService {
   constructor(
     // @Inject(LocalStorage) private localStorage: Window['localStorage'],
     private client: HttpClient
-    ) { 
+  ) {
 
     // try {
     //   const localStorageUser = this.localStorage.getItem('<USER>') || 'ERROR';
@@ -32,42 +31,38 @@ export class UserService {
   }
 
   login(data: { email: string, password: string }) {
-    return this.client.post<IUser>(`${API_URL}/login`, data, {
-      withCredentials: true
-    }).pipe(
+    return this.client.post<IUser>(`/api/login`, data).pipe(
       tap(user => this.user = user)
     )
   }
 
   register(data: { username: string, email: string, tel: string, password: string }) {
-    return this.client.post<IUser>(`${API_URL}/register`, data, {
-      withCredentials: true
-    }).pipe(
-      tap(user => this.user = user)
-    )
+    return this.client.post<IUser>(`/api/register`, data)
+      .pipe(
+        tap(user => this.user = user)
+      )
   }
 
   getProfileInfo() {
-    return this.client.get<IUser>(`${API_URL}/users/profile`, {
-      withCredentials: true
-    }).pipe(
-      tap(user => this.user = user)
-    )
+    return this.client.get<IUser>('/api/users/profile')
+      .pipe(
+        tap(user => {
+          this.user = user
+        })
+      )
   }
 
   logout() {
-    return this.client.post<IUser>(`${API_URL}/logout`, {}, {
-      withCredentials: true
-    }).pipe(
-      tap(() => { this.user = null })
-    )
+    return this.client.post<IUser>(`/api/logout`, {})
+      .pipe(
+        tap(() => { this.user = null })
+      )
   }
 
-  updateProfile(data: { username: string, email: string, tel: string } ) {
-    return this.client.put<IUser>(`${API_URL}/users/profile`, data, {
-      withCredentials: true
-    }).pipe(
-      tap((user) => { this.user = user })
-    )
+  updateProfile(data: { username: string, email: string, tel: string }) {
+    return this.client.put<IUser>(`/api/profile`, data)
+      .pipe(
+        tap((user) => { this.user = user })
+      )
   }
 }

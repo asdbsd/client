@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { faPhone, faLock, faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { Subject } from 'rxjs';
 import { emailValidator, sameValueAsFactory } from 'src/app/shared/validators';
-import { UserService } from '../user.service';
+import { UserService } from '../../core/user.service';
 
 @Component({
   selector: 'app-register',
